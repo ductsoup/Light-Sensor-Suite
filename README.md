@@ -13,7 +13,7 @@ Commercial light sensors are expensive and inaccurate. The goal here is to adapt
 ##Design Notes
 This suite is intended to be mounted in the ceiling at the level of the light fixtures looking down at the task area. The enclosure is a simple cover for a standard 4x4 electrical box.
 
-Rather than interface directly, this suite simply logs data to a SCADA system which makes it available to the lighting controllers.
+Rather than interface directly, this suite simply logs data to a SCADA system which makes it available to the lighting controllers. The lighting controller's PLC logic should be coded to use the information if available but not depend on it for normal operation. 
 
 The lighting controller PLC supplies 24VDC. A TSR 1-2450 buck converter is used to provde 5VDC to the Feather HUZZAH ESP8266. The Feather's regulator supplies 3.3VDC to the sensor breakout boards.
 
