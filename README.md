@@ -8,7 +8,7 @@ Effective daylight harvesting is difficult to implement in industrial environmen
 
 A more practical approach is to use either fluorescent or LED dimmable fixtures over task areas then use a down looking light sensor as feedback to modulate the artificial light and consistently maintain any given light level at the work plane.
 
-Commercial light sensors are expensive and limited. The goal here is to adapt widely available, inexpensive and very accurate smart phone sensor technology for use in an industrial environment.
+Commercial light sensors are relatively expensive, have limited sensitiviety, and are prone to noise because  they typically use a 0-10V analog signal input. The goal here is to adapt widely available, inexpensive and very accurate smart phone sensor technology for use in an industrial environment to provide a clean, digital floating point value that's immune to noise.
 
 ![LSS Overview](/images/light-suite.png)
 
