@@ -1,5 +1,5 @@
 # Light-Sensor-Suite
-A low cost but very capable WiFi light sensor for daylight harvesting applications
+A low cost but capable WiFi light sensor for advanced daylight harvesting applications
 
 ##Overview
 Effective daylight harvesting is difficult to implement in industrial environments using commercial lighting controllers because the natural sunlight contribution changes rapidly and varies widely over the course of the day. If the source of the daylight is side lighting, the challenge becomes nearly impossible.
