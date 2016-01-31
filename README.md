@@ -1,6 +1,8 @@
 # Light-Sensor-Suite
 A low cost but capable WiFi ambient light sensor for advanced daylight harvesting applications.
 
+The hardware prototyping was test on [Adafruit IO](https://io.adafruit.com), the target SCADA environment is [Inductive Automation's Ignition](https://inductiveautomation.com/scada-software/).
+
 ##Overview
 Effective daylight harvesting is difficult to implement in industrial environments using commercial lighting controllers because the natural sunlight contribution changes rapidly and varies widely over the course of the day. If the source of the daylight is side lighting, the challenge becomes nearly impossible.
 
