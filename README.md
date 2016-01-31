@@ -24,20 +24,22 @@ A TCS34725 is used for light level and color temperature sensing. Color temperat
 ##MODBUS Holding Register Map (float encoded)
 All registers are read only unless otherwise indicated.
 
-###S0 - Feather###
-**S0_Available            40001**
+###S0 - ESP8266###
+**S0_Available 40001**
 
 Always 1 if the suite is connected and operating. 
 
-**S0_ScanTime             40003**
+**S0_ScanTime 40003**
 
 The number of milliseconds it took to update the S0 data.
 
-**S0_CurrentMillis        40005**
+**S0_CurrentMillis 40005**
 
 The number of milliseconds since the suite booted. This is natively an unsigned long value and will eventually wrap.
 
-**S0_RSSI                 40007**
+**S0_RSSI 40007**
+
+The WiFi signal strength.
 
 ###S1 - TCS34725###
 
@@ -65,29 +67,15 @@ The most recent IR correction value.
 
 The current gain.
 
-**S1_ATIME_MS             40021**
-
-**S1_ATIME                40023**
+**S1_ATIME_MS 40021, S1_ATIME 40023**
 
 The current integration time.
 
-**S1_R_RAW                40025**
-
-**S1_G_RAW                40027**
-
-**S1_B_RAW                40029**
-
-**S1_C_RAW                40031**
+**S1_R_RAW 40025, S1_G_RAW 40027, S1_B_RAW 40029, S1_C_RAW 40031**
 
 The most recent raw sensor data for the R, G, B and C channels.
 
-**S1_R_COMP               40033**
-
-**S1_G_COMP               40035**
-
-**S1_B_COMP               40037**
-
-**S1_C_COMP               40039**
+**S1_R_COMP 40033, S1_G_COMP 40035, S1_B_COMP 40037, S1_C_COMP 40039**
 
 The most recent IR compensated sensor data for the R, G, B and C channels.
 
