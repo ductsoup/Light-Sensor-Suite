@@ -15,9 +15,9 @@ This suite is intended to be mounted in the ceiling at the level of the light fi
 
 Rather than interface directly, this suite simply logs data to a SCADA system which makes it available to the lighting controllers. The lighting controller's PLC logic should be coded to use the information if available but not depend on it for normal operation. 
 
-The lighting controller PLC supplies 24VDC. A TSR 1-2450 buck converter is used to provde 5VDC to the Feather HUZZAH ESP8266. The Feather's regulator supplies 3.3VDC to the sensor breakout boards.
+The lighting controller PLC supplies 24VDC. A TSR 1-2450 buck converter (supply 6.5 to 36VDC) is used to provde 5VDC to the Adafruit Feather HUZZAH ESP8266. The ESP8266's regulator supplies 3.3VDC to the sensor breakout boards.
 
-Both sensor breakout boards communicate with the Feather over I2C. Other I2C sensors can easily be added as needed depending on the application.
+Both sensor breakout boards communicate with the ESP8266 over I2C. Other I2C sensors can easily be added as needed depending on the application.
 
 A TCS34725 is used for light level and color temperature sensing. Color temperature sensing introduces the opportunity to discriminate between artificial and natural light. A BME280 is used for temperature, humidity and barometric pressure sening. The BME280 is not required for this application but provides useful data for managing destratification, heating and cooling systems.
 
