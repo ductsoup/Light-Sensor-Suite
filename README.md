@@ -21,90 +21,90 @@ Both sensor breakout boards communicate with the ESP8266 over I2C. Other I2C sen
 
 A TCS34725 is used for light level and color temperature sensing. Color temperature sensing introduces the opportunity to discriminate between artificial and natural light. A BME280 is used for temperature, humidity and barometric pressure sening. The BME280 is not required for this application but provides useful data for managing destratification, heating and cooling systems.
 
-##MODBUS Holding Register Map (float encoded)
+##MODBUS Holding Register Map (Float, reverse word order)
 All registers are read only unless otherwise indicated.
 
 ###S0 - ESP8266###
-**S0_Available 40001**
+**40001 S0_Available**
 
 Always 1 if the suite is connected and operating. 
 
-**S0_ScanTime 40003**
+**40003 S0_ScanTime**
 
 The number of milliseconds it took to update the S0 data.
 
-**S0_CurrentMillis 40005**
+**40005 S0_CurrentMillis**
 
 The number of milliseconds since the suite booted. This is natively an unsigned long value and will eventually wrap.
 
-**S0_RSSI 40007**
+**40007 S0_RSSI**
 
 The WiFi signal strength.
 
 ###S1 - TCS34725###
 
-**S1_Available            40009**
+**40009 S1_Available**
 
 A value of 1 indicates the sensor is connected and reporting, otherwise the value will be 0.
 
-**S1_ScanTime             40011**
+**40011 S1_ScanTime**
 
 The number of milliseconds it took to update the S1 data.
 
-**S1_Lux                  40013**
+**40013 S1_Lux**
 
 The most recent light level in lux.
 
-**S1_CT                   40015**
+**40015 S1_CT**
 
 The most recent color temperature in Kelvin.
 
-**S1_IR                   40017**
+**40017 S1_IR**
 
 The most recent IR correction value.
 
-**S1_AGAINX               40019**
+**40019 S1_AGAINX**
 
 The current gain.
 
-**S1_ATIME_MS 40021, S1_ATIME 40023**
+**40021 S1_ATIME_MS, 40023 S1_ATIME**
 
 The current integration time.
 
-**S1_R_RAW 40025, S1_G_RAW 40027, S1_B_RAW 40029, S1_C_RAW 40031**
+**40025 S1_R_RAW, 40027 S1_G_RAW, 40029 S1_B_RAW, 40031 S1_C_RAW**
 
 The most recent raw sensor data for the R, G, B and C channels.
 
-**S1_R_COMP 40033, S1_G_COMP 40035, S1_B_COMP 40037, S1_C_COMP 40039**
+**40033 S1_R_COMP, 40035 S1_G_COMP, 40037 S1_B_COMP, 40039 S1_C_COMP**
 
 The most recent IR compensated sensor data for the R, G, B and C channels.
 
 ###S2 - BME280###
 
-**S2_Available            40041**
+**40041 S2_Available**
 
 A value of 1 indicates the sensor is connected and reporting, otherwise the value will be 0.
 
-**S2_ScanTime             40043**
+**40043 S2_ScanTime**
 
 The number of milliseconds it took to update the S2 data.
 
-**S2_SeaLevelPressureHPA  40045**  
+**40045 S2_SeaLevelPressureHPA**  
 
 This register is read/write and contains the sea level pressure used to calculate altitude.
 
-**S2_Temperature          40047**
+**40047 S2_Temperature**
 
 The most recent temperature in Fahrenheit.
 
-**S2_Pressure             40049**
+**40049 S2_Pressure**
 
 The most recent atmospheric pressure in inches of mercury.
 
-**S2_Altitude             40051**
+**40051 S2_Altitude**
 
 The most recent calculated altitude in feet.
 
-**s2_Humidity             40053**
+**40053 S2_Humidity**
 
 The most recent relative humidity.
