@@ -21,7 +21,7 @@ Both sensor breakout boards communicate with the ESP8266 over I2C. Other I2C sen
 
 A [TCS34725] (https://www.adafruit.com/products/1334) is used for light level and color temperature sensing. Color temperature sensing introduces the opportunity to discriminate between artificial and natural light. A [BME280] (https://www.adafruit.com/products/2652) is used for temperature, humidity and barometric pressure sening. The BME280 is not required for this application but provides useful data for managing destratification, heating and cooling systems.
 
-##MODBUS Holding Register Map (Float, reverse word order)
+##MODBUS Holding Register Map (Float encoding, reversed word order)
 All registers are read only unless otherwise indicated.
 
 ###S0 - ESP8266###
