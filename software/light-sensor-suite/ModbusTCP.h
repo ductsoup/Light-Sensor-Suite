@@ -124,7 +124,7 @@
 // Application specific, adjust as necessary
 //
 #define MB_PORT 502
-#define MB_REGISTERS_MAX 54
+#define MB_REGISTERS_MAX 56
 //
 // Comment out the encodings you don't need to save space
 //
