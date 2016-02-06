@@ -189,7 +189,8 @@ void tcs34725::getData(void) {
   maxlux = 65535 / (cpl * 3);
 
   lux = (TCS34725_R_Coef * float(r_comp) + TCS34725_G_Coef * float(g_comp) + TCS34725_B_Coef * float(b_comp)) / cpl;
-  ct = TCS34725_CT_Coef * float(b_comp) / float(r_comp) + TCS34725_CT_Offset;
+  if (lux > 0.1) // 2016-02-06 skip the CT calculation unless lux is greater than 0.1 
+    ct = TCS34725_CT_Coef * float(b_comp) / float(r_comp) + TCS34725_CT_Offset;
 }
 
 tcs34725 tcs;
@@ -203,7 +204,7 @@ tcs34725 tcs;
 #define BME_MOSI 11
 #define BME_CS 10
 
-#define SEALEVELPRESSURE_HPA (1015.03)
+#define SEALEVELPRESSURE_HPA (1027.8)
 
 Adafruit_BME280 bme; // I2C
 
@@ -220,28 +221,29 @@ Adafruit_BME280 bme; // I2C
 
 #define S1_Available            40009
 #define S1_ScanTime             40011
-#define S1_Lux                  40013
-#define S1_CT                   40015
-#define S1_IR                   40017
-#define S1_AGAINX               40019
-#define S1_ATIME_MS             40021
-#define S1_ATIME                40023
-#define S1_R_RAW                40025
-#define S1_G_RAW                40027
-#define S1_B_RAW                40029 
-#define S1_C_RAW                40031
-#define S1_R_COMP               40033
-#define S1_G_COMP               40035
-#define S1_B_COMP               40037
-#define S1_C_COMP               40039
+#define S1_Calibration          40013
+#define S1_Lux                  40015
+#define S1_CT                   40017
+#define S1_IR                   40019
+#define S1_AGAINX               40021
+#define S1_ATIME_MS             40023
+#define S1_ATIME                40025
+#define S1_R_RAW                40027
+#define S1_G_RAW                40029
+#define S1_B_RAW                40031 
+#define S1_C_RAW                40033
+#define S1_R_COMP               40035
+#define S1_G_COMP               40037
+#define S1_B_COMP               40039
+#define S1_C_COMP               40041
 
-#define S2_Available            40041
-#define S2_ScanTime             40043
-#define S2_SeaLevelPressureHPA  40045  
-#define S2_Temperature          40047
-#define S2_Pressure             40049
-#define S2_Altitude             40051
-#define S2_Humidity             40053
+#define S2_Available            40043
+#define S2_ScanTime             40045
+#define S2_SeaLevelPressureHPA  40047  
+#define S2_Temperature          40049
+#define S2_Pressure             40051
+#define S2_Altitude             40053
+#define S2_Humidity             40055
 
 bool s1, s2; // flags to indicate which sensors are available
 
@@ -252,7 +254,7 @@ void setup() {
   Serial.begin(115200);
   delay(10);
   Serial.println(); Serial.println();
-  Serial.println("2016-01-30 light-sensor-suite");
+  Serial.println("2016-02-01 light-sensor-suite");
 
   // Connect to WiFi access point
   m.begin(WLAN_SSID, WLAN_PASS);
@@ -262,6 +264,7 @@ void setup() {
   Serial.print("S1 - TCS34725 ");
   Serial.println((s1 = tcs.begin()) ? "initialized" : "error");
   m.setFloat(S1_Available, (float) s1);
+  m.setFloat(S1_Calibration, 1.0);
 
   // Initialize S2
   Serial.print("S2 - BME280 ");
@@ -292,7 +295,7 @@ void loop() {
   // update S1 registers
   while (s1 && (curMillis - S1StartTime > 5000)) {
     tcs.getData();
-    m.setFloat(S1_Lux, tcs.lux);
+    m.setFloat(S1_Lux, m.getFloat(S1_Calibration) * tcs.lux);
     m.setFloat(S1_CT, tcs.ct);
     m.setFloat(S1_IR, tcs.ir);
     m.setFloat(S1_AGAINX, tcs.againx);
