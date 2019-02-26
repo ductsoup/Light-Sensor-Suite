@@ -3,7 +3,7 @@ A low cost but capable WiFi ambient light sensor for advanced daylight harvestin
 
 The hardware was prototyped and refined using [Adafruit IO beta](https://io.adafruit.com), the firmware was tested using [Inductive Automation's Ignition](https://inductiveautomation.com/scada-software/) product.
 
-##Overview
+## Overview
 Effective daylight harvesting is difficult to implement in industrial environments using commercial lighting controllers because the natural sunlight contribution changes rapidly and varies widely over the course of the day. If the source of the daylight is side lighting, the challenge becomes nearly impossible.
 
 A more practical approach is to use either fluorescent or LED dimmable fixtures over task areas then use a down looking light sensor as feedback to modulate the artificial light and consistently maintain any given light level at the work plane.
@@ -12,7 +12,7 @@ Commercial light sensors are relatively expensive to install, have limited sensi
 
 ![LSS Overview](/images/light-suite.png)
 
-##Design Notes
+## Design Notes
 This suite is intended to be mounted in the ceiling at the level of the light fixtures looking down at the task area. The enclosure is a cover that fits a standard 4x4 electrical junction box.
 
 Rather than interface directly, this suite simply logs data to a SCADA system which makes it available to the lighting controllers. The lighting controller's PLC logic should be coded to use the information if available but not depend on it for normal operation. 
@@ -23,10 +23,10 @@ Both sensor breakout boards communicate with the ESP8266 over I2C. Other I2C sen
 
 A [TCS34725] (https://www.adafruit.com/products/1334) is used for light level and color temperature sensing. Color temperature sensing introduces the opportunity to discriminate between artificial and natural light. A [BME280] (https://www.adafruit.com/products/2652) is used for temperature, humidity and barometric pressure sening. The BME280 is not required for this application but provides useful data for managing destratification, heating and cooling systems.
 
-##MODBUS Holding Register Map (Float encoding, reversed word order)
+## MODBUS Holding Register Map (Float encoding, reversed word order)
 All registers are read only unless otherwise indicated.
 
-###S0 - ESP8266###
+### S0 - ESP8266 
 **40001 S0_Available**
 
 Always 1 if the suite is connected and operating. 
@@ -43,7 +43,7 @@ The number of milliseconds since the suite booted. This is natively an unsigned 
 
 The WiFi signal strength.
 
-###S1 - TCS34725###
+### S1 - TCS34725
 
 **40009 S1_Available**
 
@@ -81,7 +81,7 @@ The most recent raw sensor data for the R, G, B and C channels.
 
 The most recent IR compensated sensor data for the R, G, B and C channels.
 
-###S2 - BME280###
+### S2 - BME280
 
 **40041 S2_Available**
 
